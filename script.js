@@ -2,14 +2,27 @@
 const loginScreen = document.getElementById('login-screen');
 const mainScreen = document.getElementById('main-screen');
 
+// SECRET
+const SECRET_HASH = "8FC3A238EAAD4D2C4A3CD1E9765609C8BEA7274D2DC269354ED499006C55FD73";
+
 // 1. ログイン処理
 function login() {
-    const pass = document.getElementById('password').value;
-    if (pass === '1234') {
+    const inputPass = document.getElementById('password').value;
+    const savedPass = localStorage.getItem('appPassword');
+
+    if (!savedPass) {
+        // 初回起動時：入力された値をパスワードとして登録
+        if(confirm("パスワードが設定されていません。これをパスワードにしますか？")) {
+            localStorage.setItem('appPassword', inputPass);
+            alert("登録しました。");
+            loginScreen.style.display = 'none';
+            mainScreen.style.display = 'block';
+        }
+    } else if (inputPass === savedPass) {
         loginScreen.style.display = 'none';
         mainScreen.style.display = 'block';
     } else {
-        alert('パスワードが違います');
+        alert("パスワードが違います");
     }
 }
 
