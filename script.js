@@ -2,8 +2,6 @@
 const loginScreen = document.getElementById('login-screen');
 const mainScreen = document.getElementById('main-screen');
 
-// SECRET
-const SECRET_HASH = "8FC3A238EAAD4D2C4A3CD1E9765609C8BEA7274D2DC269354ED499006C55FD73";
 
 // 1. ログイン処理
 function login() {
