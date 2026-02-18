@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>シンプルお小遣い帳</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="login-screen">
+        <h2>ログイン</h2>
+        <input type="password" id="password" placeholder="パスワードを入力">
+        <button onclick="login()">ログイン</button>
+    </div>
+
+    <div id="main-screen" style="display: none;">
+        <h2>お小遣い帳</h2>
+        
+        <div class="input-area">
+            <input type="date" id="item-date">
+            <input type="text" id="item-name" placeholder="項目（例：ランチ）">
+            <input type="number" id="amount" placeholder="金額">
+            
+            <select id="type">
+                <option value="expense">支出</option>
+                <option value="income">収入</option>
+            </select>
+
+            <select id="category">
+                <option value="食費">食費</option>
+                <option value="日用品">日用品</option>
+                <option value="娯楽">娯楽</option>
+                <option value="交際費">交際費</option>
+                <option value="交通費">交通費</option>
+                <option value="その他">その他</option>
+            </select>
+
+            <button onclick="addEntry()">追加</button>
+        </div>
+
+        <hr>
+
+        <div class="filter-area">
+            <label>表示する月：</label>
+            <input type="month" id="filter-month" onchange="renderTable()">
+        </div>
+
+        <table border="1" id="ledger-table" style="width: 100%; margin-top: 10px; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #f2f2f2;">
+                    <th>日付</th>
+                    <th>項目</th>
+                    <th>カテゴリ</th>
+                    <th>収入</th>
+                    <th>支出</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="ledger-body">
+                </tbody>
+        </table>
+
+        <div id="summary-area" style="margin-top: 20px; padding: 15px; border: 2px solid #333; background-color: #fafafa;">
+            <strong>【月間収支】</strong>
+            <span> 収入合計: <span id="total-income" style="color: blue;">¥0</span></span> | 
+            <span> 支出合計: <span id="total-expense" style="color: red;">¥0</span></span> | 
+            <span> <strong>残高: <span id="total-balance">¥0</span></strong></span>
+        </div>
+        
+        <br>
+        <button onclick="logout()">ログアウト</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
